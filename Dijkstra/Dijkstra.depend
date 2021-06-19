@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1624145421 source:c:\users\development\documents\github\c projects\dijkstra\main.c
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+
