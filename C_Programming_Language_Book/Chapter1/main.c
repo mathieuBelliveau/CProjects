@@ -9,10 +9,11 @@ void count_lines();
 void count_lines_tabs_blanks();
 void multi_to_single_blanks();
 void escape_the_escaped();
+void count_words();
 
 int main()
 {
-    escape_the_escaped();
+    count_words();
     return 0;
 }
 
@@ -21,10 +22,10 @@ void HelloWorld()
     printf("hello, world");
 }
 
-//0 = fahr to cel
-//1 = cel to fahr
 void Fahr_Cel(int convert)
 {
+    //0 = fahr to cel
+    //1 = cel to fahr
     print_header(convert);
     float fahr, celsius;
     float lower,upper,step;
@@ -142,6 +143,44 @@ void escape_the_escaped()
             putchar('\\');
             putchar('t');
         }
-        putchar(c);
+        else if(c == '\b')
+        {
+            putchar('\\');
+            putchar('b');
+        }
+        else if(c == '\\')
+        {
+            putchar('\\');
+            putchar('\\');
+        }
+        else
+            putchar(c);
     }
+}
+
+void count_words()
+{
+    int in = 1;
+    int out = 0;
+
+    int c, nl, nw, nc, state;
+
+    state = out;
+    nl = nw = nc = 0;
+
+    while ((c = getchar()) != EOF)
+    {
+        ++nc;
+        if(c=='\n')
+            ++nl;
+        if(c == ' ' || c =='\n' || c=='\t')
+            state = out;
+        else if (state == out)
+        {
+            state = in;
+            ++nw;
+        }
+
+    }
+    printf("%d %d %d\n",nl,nw,nc);
 }
