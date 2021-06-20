@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1624197358 source:c:\users\development\documents\github\c projects\linterproject\main.c
+	<stdio.h>
+	<stdlib.h>
+
