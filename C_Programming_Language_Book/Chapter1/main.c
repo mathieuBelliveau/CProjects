@@ -4,10 +4,14 @@ void HelloWorld();
 void Fahr_Cel(int convert);
 void print_header(int convert);
 void simple_read_write();
+void character_counting();
+void count_lines();
+void count_lines_tabs_blanks();
+void multi_to_single_blanks();
 
 int main()
 {
-
+    multi_to_single_blanks();
     return 0;
 }
 
@@ -50,7 +54,8 @@ void Fahr_Cel(int convert)
 }
 
 void print_header(int convert)
-{    if(!convert)
+{
+    if(!convert)
         printf("Fahrenheit\tCelsius\n");
 
     else
@@ -66,7 +71,61 @@ void simple_read_write()
     {
         putchar(c);
         c=getchar();
+
     }
+    if(c==EOF)
+            printf("the end");
 
 }
 
+void character_counting()
+{
+    double nc;
+
+    for (nc = 0; getchar() != EOF; ++nc)
+        ;
+    printf("%.0f\n",nc);
+}
+
+void count_lines()
+{
+    int c, nl;
+
+    nl=0;
+    while ((c=getchar()) != EOF)
+        if (c=='\n')
+            ++nl;
+    printf("%d\n",nl);
+}
+
+void count_lines_tabs_blanks()
+{
+    int line,tab,blank = 0;
+    int c;
+
+    while ((c = getchar()) != EOF)
+    {
+        if(c == '\t')
+            ++tab;
+        if(c==' ')
+            ++blank;
+        if(c=='\n')
+            ++line;
+    }
+    printf("Tab:%d\nBlank:%d\nLine:%d\n",tab,blank,line);
+}
+
+void multi_to_single_blanks()
+{
+    int c;
+
+    while((c=getchar()) != EOF)
+    {
+        if(c==' '){
+            while(c == ' ')
+                c = getchar();
+            putchar(' ');
+        }
+        putchar(c);
+    }
+}
