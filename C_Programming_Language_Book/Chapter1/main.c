@@ -8,10 +8,11 @@ void character_counting();
 void count_lines();
 void count_lines_tabs_blanks();
 void multi_to_single_blanks();
+void escape_the_escaped();
 
 int main()
 {
-    multi_to_single_blanks();
+    escape_the_escaped();
     return 0;
 }
 
@@ -125,6 +126,21 @@ void multi_to_single_blanks()
             while(c == ' ')
                 c = getchar();
             putchar(' ');
+        }
+        putchar(c);
+    }
+}
+
+void escape_the_escaped()
+{
+    int c;
+
+    while((c = getchar()) != EOF)
+    {
+        if(c == '\t')
+        {
+            putchar('\\');
+            putchar('t');
         }
         putchar(c);
     }
