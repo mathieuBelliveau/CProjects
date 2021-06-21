@@ -10,10 +10,11 @@ void count_lines_tabs_blanks();
 void multi_to_single_blanks();
 void escape_the_escaped();
 void count_words();
+void word_per_line();
 
 int main()
 {
-    count_words();
+    word_per_line();
     return 0;
 }
 
@@ -183,4 +184,19 @@ void count_words()
 
     }
     printf("%d %d %d\n",nl,nw,nc);
+}
+
+void word_per_line()
+{
+    int c;
+
+    while((c = getchar()) != EOF)
+    {
+        while(c == '\n' || c == ' ' || c == '\t')
+        {
+            putchar('\n');
+            c = getchar();
+        }
+        putchar(c);
+    }
 }
