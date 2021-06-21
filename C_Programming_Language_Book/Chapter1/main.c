@@ -259,5 +259,12 @@ void print_horizontal_hist(int ndigit[10] , int nwhite, int nother)
 
 void print_vertical_hist(int ndigit[10] , int nwhite, int nother)
 {
+    //Exercise 1-13 with parameters with a twist (90 degrees to be exact)
 
+    //12 values
+    for (int i = 0; i < 12; ++i)
+    {
+        if(i<10)
+
+    }
 }
