@@ -11,10 +11,13 @@ void multi_to_single_blanks();
 void escape_the_escaped();
 void count_words();
 void word_per_line();
+void count_digits_white_others();
+void print_horizontal_hist(int ndigit[10] , int nwhite, int nother);
+void print_vertical_hist(int ndigit[10] , int nwhite, int nother);
 
 int main()
 {
-    word_per_line();
+    count_digits_white_others();
     return 0;
 }
 
@@ -188,15 +191,73 @@ void count_words()
 
 void word_per_line()
 {
+    //I don't consider this one done 1-12
     int c;
 
     while((c = getchar()) != EOF)
     {
-        while(c == '\n' || c == ' ' || c == '\t')
+        while((c = getchar()) == '\n' || c == ' ' || c == '\t')
         {
             putchar('\n');
-            c = getchar();
         }
         putchar(c);
     }
+}
+
+void count_digits_white_others()
+{
+    //1.6 example
+    int c,i,nwhite,nother;
+    int ndigit[10];
+
+    nwhite = nother = 0;
+
+    for (i=0; i<10; ++i)
+        ndigit[i] = 0;
+
+    while ((c=getchar()) != EOF)
+        if (c>='0' && c<='9')
+            ++ndigit[c-'0'];
+        else if (c == ' ' || c == '\n' || c == '\t')
+            ++nwhite;
+        else
+            ++nother;
+
+    print_horizontal_hist(&ndigit, nwhite, nother);
+    print_vertical_hist(&ndigit, nwhite, nother);
+
+    printf("\ndigits =");
+    for (i = 0; i<10; ++i)
+        printf(" %d", ndigit[i]);
+
+    printf(", white space = %d, other = %d\n", nwhite, nother);
+}
+
+void print_horizontal_hist(int ndigit[10] , int nwhite, int nother)
+{
+    //Exercise 1-13 with parameters
+
+    for(int i = 0; i<10; ++i)
+    {
+        printf("%d          :",i);
+        for (int j = 0; j<ndigit[i]; ++j)
+            printf("|");
+        printf("\n");
+    }
+
+    printf("WhiteSpace :");
+    for (int i = 0; i<nwhite; ++i)
+        printf("|");
+    printf("\n");
+
+    printf("Other      :");
+    for (int i = 0; i<nother; ++i)
+        printf("|");
+    printf("\n");
+
+}
+
+void print_vertical_hist(int ndigit[10] , int nwhite, int nother)
+{
+
 }
