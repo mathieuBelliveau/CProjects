@@ -223,8 +223,8 @@ void count_digits_white_others()
         else
             ++nother;
 
-    print_horizontal_hist(&ndigit, nwhite, nother);
-    print_vertical_hist(&ndigit, nwhite, nother);
+    //print_horizontal_hist(&ndigit, nwhite, nother);
+    print_vertical_hist(ndigit, nwhite, nother);
 
     printf("\ndigits =");
     for (i = 0; i<10; ++i)
@@ -260,11 +260,43 @@ void print_horizontal_hist(int ndigit[10] , int nwhite, int nother)
 void print_vertical_hist(int ndigit[10] , int nwhite, int nother)
 {
     //Exercise 1-13 with parameters with a twist (90 degrees to be exact)
+    int max=0;
+    for(int i = 0; i<12; ++i)
+    {
+        if (i<10)
+            if(ndigit[i] > max)
+                max = ndigit[i];
+        if(i==10)
+            if(nwhite > max)
+                max = nwhite;
+        if(i==11)
+            if(nother > max)
+                max = nother;
+    }
 
     //12 values
-    for (int i = 0; i < 12; ++i)
+    for(int i = 0; i<12; ++i)
     {
-        if(i<10)
+        if (i<10)
+            if(ndigit[i] == max)
+            {
+                putchar('~');
+                ndigit[i] = --max;
+            }
 
+        if(i==10)
+            if(nwhite == max)
+            {
+                putchar('~');
+                nwhite = --max;
+            }
+        if(i==11)
+            if(nother == max)
+            {
+                putchar('~');
+                nother = --max;
+            }
+
+        putchar('\n');
     }
 }
