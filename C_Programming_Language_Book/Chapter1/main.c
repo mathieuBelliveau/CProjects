@@ -275,28 +275,31 @@ void print_vertical_hist(int ndigit[10] , int nwhite, int nother)
     }
 
     //12 values
-    for(int i = 0; i<12; ++i)
+    while(max > 0)
     {
-        if (i<10)
-            if(ndigit[i] == max)
-            {
-                putchar('~');
-                ndigit[i] = --max;
-            }
+        for(int i = 0; i<12; ++i)
+        {
+            if (i<10)
+                if(ndigit[i] == max)
+                {
+                    printf("~");
+                    ndigit[i] = --max;
+                }
 
-        if(i==10)
-            if(nwhite == max)
-            {
-                putchar('~');
-                nwhite = --max;
-            }
-        if(i==11)
-            if(nother == max)
-            {
-                putchar('~');
-                nother = --max;
-            }
+            if(i==10)
+                if(nwhite == max)
+                {
+                    printf("~");
+                    nwhite = --max;
+                }
+            if(i==11)
+                if(nother == max)
+                {
+                    printf("~");
+                    nother = --max;
+                }
 
-        putchar('\n');
+            printf("\n");
+        }
     }
 }
